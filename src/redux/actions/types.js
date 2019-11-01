@@ -1,0 +1,1 @@
+export const FETCH_EVENT_FEED = 'FETCH_EVENT_FEED';
