@@ -15,11 +15,9 @@ export const fetchEventFeed = () => dispatch => {
   };
 
   Object.keys(params).forEach(function(key) {
-    if (url[url.length - 1] === '?') {
-      url += key + '=' + params[key];
-    } else {
-      url += '&' + key + '=' + params[key];
-    }
+    url[url.length - 1] === '?'
+      ? (url += key + '=' + params[key])
+      : (url += '&' + key + '=' + params[key]);
   });
 
   Axios.get(url, {
@@ -27,10 +25,14 @@ export const fetchEventFeed = () => dispatch => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${process.env.REACT_APP_EVENTBRITE}`
     }
-  }).then(resp =>
-    dispatch({
-      type: FETCH_EVENT_FEED,
-      payload: resp.data.events
-    })
-  );
+  })
+    .then(resp =>
+      dispatch({
+        type: FETCH_EVENT_FEED,
+        payload: resp.data.events
+      })
+    )
+    .catch(err => {
+      console.log(err);
+    });
 };

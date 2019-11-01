@@ -1,29 +1,15 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { fetchEventFeed } from '../../redux/actions/feedActions';
+import React from 'react';
 
 import './home.style.css';
+import EventFeed from '../../components/EventFeed/event-feed.component';
 
-const HomePage = ({ fetchEventFeed, events }) => {
-  const testAPI = () => {
-    fetchEventFeed();
-  };
-
+const HomePage = () => {
   return (
-    <div>
-      <button onClick={testAPI}>Test</button>
-      Home Page
-    </div>
+    <>
+      <div>Home Page</div>
+      <EventFeed />
+    </>
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    events: state.eventFeed.events
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  { fetchEventFeed }
-)(HomePage);
+export default HomePage;
