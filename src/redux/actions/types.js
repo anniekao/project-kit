@@ -1,1 +1,7 @@
-export const FETCH_EVENT_FEED = 'FETCH_EVENT_FEED';
+export const FETCH_EVENT_FEED = "FETCH_EVENT_FEED";
+
+// LOGIN
+export const SET_PASSWORD = "SET_PASSWORD";
+export const SET_CONFIRM_PASSWORD = "SET_CONFIRM_PASSWORD";
+export const SET_EMAIL = "SET_EMAIL";
+export const SUBMIT_LOGIN = "SUBMIT_LOGIN";
