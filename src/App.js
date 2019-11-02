@@ -1,13 +1,13 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { Provider } from 'react-redux';
-import store from './redux/store';
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
-import LandingPage from './pages/landing/landing.component';
-import HomePage from './pages/home/home.component';
-import LoginPage from './pages/login/login.component';
-import SignupPage from './pages/signup/signup.component';
+import LandingPage from "./pages/landing/landing.component";
+import HomePage from "./pages/home/home.component";
+import LoginPage from "./pages/login/login.component";
+import SignupPage from "./pages/signup/signup.component";
 
 function App() {
   return (

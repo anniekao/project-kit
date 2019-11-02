@@ -1,13 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import './login.style.css';
+import "./login.style.css";
 
 const LoginPage = () => {
-  return (
-    <div>
-      Login Page
-    </div>
-  );
-}
- 
+  return <div className="login-outer-container">Login Page</div>;
+};
+
 export default LoginPage;
