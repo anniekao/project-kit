@@ -10,24 +10,24 @@ import {
   ACTION_SET_PASSWORD,
   ACTION_SET_CONFIRM_PASSWORD,
   ACTION_SET_EMAIL,
-  ACTION_SUBMIT_LOGIN
+  ACTION_SUBMIT_SIGNUP,
+  ACTION_SET_SIGNUP_ERROR
 } from "../../redux/actions/signupAction";
 
 const SignupPage = ({
   email,
   password,
   confirmedPassword,
+  signupErr,
   ACTION_SET_PASSWORD,
   ACTION_SET_CONFIRM_PASSWORD,
   ACTION_SET_EMAIL,
-  ACTION_SUBMIT_LOGIN
+  ACTION_SUBMIT_SIGNUP
 }) => {
   const [err, setErr] = useState(false);
   const [missingErr, setMissingErr] = useState(false);
 
   const validatePassword = (pass, cpassword) => {
-    console.log("password is now " + password);
-    console.log("confirmedPassword is now " + confirmedPassword);
     return pass === cpassword;
   };
 
@@ -37,6 +37,9 @@ const SignupPage = ({
     }
     if (missingErr) {
       setMissingErr(false);
+    }
+    if (signupErr) {
+      ACTION_SET_SIGNUP_ERROR("");
     }
   };
 
@@ -106,6 +109,9 @@ const SignupPage = ({
                 ACTION_SET_CONFIRM_PASSWORD(e.target.value);
               }}
             />
+            <div>
+              <p style={{ color: "red", fontSize: "0.75rem" }}>{signupErr}</p>
+            </div>
             <Fab
               variant="extended"
               aria-label="like"
@@ -118,7 +124,7 @@ const SignupPage = ({
               onClick={() => {
                 if (validateInput(email, password, confirmedPassword)) {
                   validatePassword(password, confirmedPassword)
-                    ? ACTION_SUBMIT_LOGIN()
+                    ? ACTION_SUBMIT_SIGNUP()
                     : setErr(true);
                 }
               }}
@@ -157,7 +163,8 @@ const mapDispatchToProps = dispatch => {
     ACTION_SET_CONFIRM_PASSWORD: password =>
       dispatch(ACTION_SET_CONFIRM_PASSWORD(password)),
     ACTION_SET_EMAIL: email => dispatch(ACTION_SET_EMAIL(email)),
-    ACTION_SUBMIT_LOGIN: () => dispatch(ACTION_SUBMIT_LOGIN())
+    ACTION_SUBMIT_SIGNUP: () => dispatch(ACTION_SUBMIT_SIGNUP()),
+    ACTION_SET_SIGNUP_ERROR: value => dispatch(ACTION_SET_SIGNUP_ERROR(value))
   };
 };
 

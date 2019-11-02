@@ -21,15 +21,37 @@ const ACTION_SET_EMAIL = email => {
   };
 };
 
+const ACTION_SUBMIT_SIGNUP = () => {
+  return {
+    type: actionType.SUBMIT_SIGNUP
+  };
+};
+
 const ACTION_SUBMIT_LOGIN = () => {
   return {
     type: actionType.SUBMIT_LOGIN
   };
 };
 
+const ACTION_SET_SIGNUP_ERROR = err => {
+  return {
+    type: actionType.SET_SIGNUP_ERROR,
+    payload: err
+  };
+};
+
+const ACTION_SET_LOGIN_ERROR = err => {
+  return {
+    type: actionType.SET_LOGIN_ERROR,
+    payload: err
+  };
+};
 export {
   ACTION_SET_PASSWORD,
   ACTION_SET_CONFIRM_PASSWORD,
   ACTION_SET_EMAIL,
-  ACTION_SUBMIT_LOGIN
+  ACTION_SUBMIT_SIGNUP,
+  ACTION_SUBMIT_LOGIN,
+  ACTION_SET_SIGNUP_ERROR,
+  ACTION_SET_LOGIN_ERROR
 };
