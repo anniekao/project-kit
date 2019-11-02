@@ -4,6 +4,7 @@ import "./login.style.css";
 import { FormControl, TextField, Fab } from "@material-ui/core";
 import { mdiGooglePlusBox } from "@mdi/js";
 import Icon from "@mdi/react";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   return (
@@ -53,16 +54,16 @@ const LoginPage = () => {
           <section style={{ marginTop: "2rem" }}>
             <p>
               Don't have an account?
-              <a
-                href="/signup"
+              <Link
+                to="/signup"
                 style={{
                   color: "#ffdc00",
                   textDecoration: "none",
                   marginLeft: "0.5rem"
                 }}
               >
-                Sign Up
-              </a>
+                Sign up
+              </Link>
             </p>
             <p style={{ color: "#cccccc" }}>OR</p>
             <Icon path={mdiGooglePlusBox} size={2} color="red" />
