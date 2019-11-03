@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import feedReducer from "./feedReducer";
+import eventFeedReducer from "./eventFeedReducer";
 import singupReducer from "./signupReducer";
 
 export default combineReducers({
-  eventFeed: feedReducer,
+  eventFeed: eventFeedReducer,
   singupState: singupReducer
 });

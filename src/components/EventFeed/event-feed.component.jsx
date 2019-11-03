@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchEventFeed } from '../../redux/actions/feedActions';
+import { fetchEventFeed } from '../../redux/actions/eventFeedActions';
 
 import EventFeedItem from './EventFeedItem/event-feed-item.component';
 
