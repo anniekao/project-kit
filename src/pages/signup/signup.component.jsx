@@ -55,7 +55,7 @@ const SignupPage = ({
     <div className="signup-base-container">
       <h1 className="app-title">Kit - Keep In Touch</h1>
       <section className="signup-main-container">
-        <div className="page-label"></div>
+        <div className="page-label">Sign Up</div>
         <section className="main-form-container">
           <FormControl className="form-controller-container">
             <TextField

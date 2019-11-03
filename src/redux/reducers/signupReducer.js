@@ -1,5 +1,5 @@
 import * as actionTypes from "../actions/types";
-import axios from "axios";
+import axios, { setAuthHeader } from "../../axios";
 import {
   ACTION_SET_LOGIN_ERROR,
   ACTION_SET_SIGNUP_ERROR
@@ -23,17 +23,12 @@ const signupReducer = (state = initialState, action) => {
     case actionTypes.SET_PASSWORD:
       return { ...state, password: action.payload };
     case actionTypes.SUBMIT_SIGNUP:
-      axios({
-        headers: {
-          "Content-Type": "application/json"
-        },
-        method: "post",
-        url: "http://localhost:5000/signup",
-        data: {
+      // setAuthHeader(document.cookie);
+      axios
+        .post("/signup", {
           email: state.email,
           password: state.password
-        }
-      })
+        })
         .then(resp => {
           if (!resp.status === 200) {
             throw new Error("Register user failed");
@@ -49,23 +44,19 @@ const signupReducer = (state = initialState, action) => {
       return state;
 
     case actionTypes.SUBMIT_LOGIN:
-      axios({
-        headers: {
-          "Content-Type": "application/json"
-        },
-        method: "post",
-        url: "http://localhost:5000/login",
-        data: {
+      setAuthHeader(document.cookie);
+      axios
+        .post("/login", {
           email: state.email,
           password: state.password
-        }
-      })
+        })
         .then(resp => {
           if (resp.status !== 200) {
             // probally dont need to check
             throw new Error(resp.body.message);
           }
-          // do something here set token
+          console.log("resp body came back " + JSON.stringify(resp.data));
+          // redirect . token already set in cookie
           return "";
         })
         .catch(err => {
