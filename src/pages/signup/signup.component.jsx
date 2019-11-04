@@ -11,7 +11,8 @@ import {
   ACTION_SET_CONFIRM_PASSWORD,
   ACTION_SET_EMAIL,
   ACTION_SUBMIT_SIGNUP,
-  ACTION_SET_SIGNUP_ERROR
+  ACTION_SET_SIGNUP_ERROR,
+  SUBMIT_GOOGLE_OAUTH2_SIGNUP
 } from "../../redux/actions/signupAction";
 
 const SignupPage = ({
@@ -22,7 +23,8 @@ const SignupPage = ({
   ACTION_SET_PASSWORD,
   ACTION_SET_CONFIRM_PASSWORD,
   ACTION_SET_EMAIL,
-  ACTION_SUBMIT_SIGNUP
+  ACTION_SUBMIT_SIGNUP,
+  SUBMIT_GOOGLE_OAUTH2_SIGNUP
 }) => {
   const [err, setErr] = useState(false);
   const [missingErr, setMissingErr] = useState(false);
@@ -147,7 +149,15 @@ const SignupPage = ({
               </Link>
             </p>
             <p style={{ color: "#cccccc" }}>OR</p>
-            <Icon path={mdiGooglePlusBox} size={2} color="red" />
+            <Icon
+              path={mdiGooglePlusBox}
+              size={2}
+              color="red"
+              className="google-auth"
+              onClick={() => {
+                SUBMIT_GOOGLE_OAUTH2_SIGNUP();
+              }}
+            />
           </section>
         </section>
       </section>
@@ -164,7 +174,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(ACTION_SET_CONFIRM_PASSWORD(password)),
     ACTION_SET_EMAIL: email => dispatch(ACTION_SET_EMAIL(email)),
     ACTION_SUBMIT_SIGNUP: () => dispatch(ACTION_SUBMIT_SIGNUP()),
-    ACTION_SET_SIGNUP_ERROR: value => dispatch(ACTION_SET_SIGNUP_ERROR(value))
+    ACTION_SET_SIGNUP_ERROR: value => dispatch(ACTION_SET_SIGNUP_ERROR(value)),
+    SUBMIT_GOOGLE_OAUTH2_SIGNUP: () => dispatch(SUBMIT_GOOGLE_OAUTH2_SIGNUP())
   };
 };
 
