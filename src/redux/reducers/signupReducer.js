@@ -23,7 +23,7 @@ const signupReducer = (state = initialState, action) => {
     case actionTypes.SET_PASSWORD:
       return { ...state, password: action.payload };
     case actionTypes.SUBMIT_SIGNUP:
-      // setAuthHeader(document.cookie);
+      setAuthHeader(document.cookie);
       axios
         .post("/signup", {
           email: state.email,
@@ -34,6 +34,7 @@ const signupReducer = (state = initialState, action) => {
             throw new Error("Register user failed");
           }
           console.log("the resp is now " + JSON.stringify(resp));
+          setAuthHeader(document.cookie);
           return { ...state, confirmedPassword: "" };
         })
         .catch(err => {
@@ -69,6 +70,10 @@ const signupReducer = (state = initialState, action) => {
       return { ...state, loginErr: action.payload };
     case actionTypes.SET_SIGNUP_ERROR:
       return { ...state, signupErr: action.payload };
+    case actionTypes.SUBMIT_GOOGLE_OAUTH2_SIGNUP:
+      console.log("fwafawfawfa");
+      window.open("http://localhost:5000/auth/google", "_self");
+      return state;
     default:
       return state;
   }
