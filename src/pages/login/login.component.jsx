@@ -128,7 +128,7 @@ const LoginPage = ({
   );
 };
 
-const mapStateToProps = ({ singupState }) => singupState;
+const mapStateToProps = ({ signupState }) => signupState;
 
 const mapDispatchToProps = dispatch => {
   return {
