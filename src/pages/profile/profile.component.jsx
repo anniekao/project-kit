@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 const Profile = ({ user, users }) => {
+    const handleUpdate = () => {
+      
+    }
 
     return (
     <div>
@@ -14,6 +17,7 @@ const Profile = ({ user, users }) => {
         <p>Email: {user.email}</p>
         <p>Phone: {user.phone}</p>
       </div>
+      <button onClick={() => handleUpdate}></button>
     </div>
   )
 }
