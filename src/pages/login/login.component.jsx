@@ -10,7 +10,8 @@ import {
   ACTION_SET_PASSWORD,
   ACTION_SET_EMAIL,
   ACTION_SUBMIT_LOGIN,
-  ACTION_SET_LOGIN_ERROR
+  ACTION_SET_LOGIN_ERROR,
+  SUBMIT_GOOGLE_OAUTH2_SIGNUP
 } from "../../redux/actions/signupAction";
 
 const LoginPage = ({
@@ -20,7 +21,8 @@ const LoginPage = ({
   ACTION_SET_PASSWORD,
   ACTION_SET_EMAIL,
   ACTION_SUBMIT_LOGIN,
-  ACTION_SET_LOGIN_ERROR
+  ACTION_SET_LOGIN_ERROR,
+  SUBMIT_GOOGLE_OAUTH2_SIGNUP
 }) => {
   const [missingErr, setMissingErr] = useState(false);
 
@@ -120,7 +122,15 @@ const LoginPage = ({
               </Link>
             </p>
             <p style={{ color: "#cccccc" }}>OR</p>
-            <Icon path={mdiGooglePlusBox} size={2} color="red" />
+            <Icon
+              path={mdiGooglePlusBox}
+              size={2}
+              color="red"
+              className="google-auth"
+              onClick={() => {
+                SUBMIT_GOOGLE_OAUTH2_SIGNUP();
+              }}
+            />
           </section>
         </section>
       </section>
@@ -135,7 +145,8 @@ const mapDispatchToProps = dispatch => {
     ACTION_SET_PASSWORD: password => dispatch(ACTION_SET_PASSWORD(password)),
     ACTION_SET_EMAIL: email => dispatch(ACTION_SET_EMAIL(email)),
     ACTION_SUBMIT_LOGIN: () => dispatch(ACTION_SUBMIT_LOGIN()),
-    ACTION_SET_LOGIN_ERROR: value => dispatch(ACTION_SET_LOGIN_ERROR(value))
+    ACTION_SET_LOGIN_ERROR: value => dispatch(ACTION_SET_LOGIN_ERROR(value)),
+    SUBMIT_GOOGLE_OAUTH2_SIGNUP: () => dispatch(SUBMIT_GOOGLE_OAUTH2_SIGNUP())
   };
 };
 

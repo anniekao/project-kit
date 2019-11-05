@@ -71,7 +71,6 @@ const signupReducer = (state = initialState, action) => {
     case actionTypes.SET_SIGNUP_ERROR:
       return { ...state, signupErr: action.payload };
     case actionTypes.SUBMIT_GOOGLE_OAUTH2_SIGNUP:
-      console.log("fwafawfawfa");
       window.open("http://localhost:5000/auth/google", "_self");
       return state;
     default:

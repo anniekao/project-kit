@@ -53,11 +53,6 @@ const SUBMIT_GOOGLE_OAUTH2_SIGNUP = () => {
   };
 };
 
-const SUBMIT_GOOGLE_OAUTH2_LOGIN = () => {
-  return {
-    type: actionType.SUBMIT_GOOGLE_OAUTH2_LOGIN
-  };
-};
 
 export {
   ACTION_SET_PASSWORD,
@@ -68,5 +63,4 @@ export {
   ACTION_SET_SIGNUP_ERROR,
   ACTION_SET_LOGIN_ERROR,
   SUBMIT_GOOGLE_OAUTH2_SIGNUP,
-  SUBMIT_GOOGLE_OAUTH2_LOGIN
 };
