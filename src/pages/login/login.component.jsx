@@ -15,8 +15,10 @@ import { connect } from "react-redux";
 
 import { setUser } from '../../redux/actions/userAction';
 import { setToken } from '../../redux/actions/tokenAction';
+import { initializeUsers } from '../../redux/actions/usersAction';
 
 import loginService from '../../services/login';
+import usersService from '../../services/users';
 
 const LoginPage = ({
   // password,
@@ -24,6 +26,7 @@ const LoginPage = ({
   loginErr,
   setToken,
   setUser,
+  initializeUsers,
   history,
   // // ACTION_SUBMIT_LOGIN,
   ACTION_SET_LOGIN_ERROR
@@ -53,11 +56,12 @@ const LoginPage = ({
 
   const handleLogin = async () => {
     try {
-      const user = await loginService.login({ email: email.trim(), password });
+      const login = await loginService.login({ email: email.trim(), password });
       // TODO:SET COOKIE?
-
-      setToken(user.token);
-      setUser(user.data);
+      const userData = await usersService.getUser(login.data.id);
+      setToken(login.token);
+      setUser(userData);      
+      initializeUsers();
       history.push('/')
     } catch(exception) {
       setErrorMessage('Wrong password');
@@ -169,13 +173,15 @@ const LoginPage = ({
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    users: state.user
   }
 };
 
 const mapDispatchToProps = {
   setUser,
-  setToken
+  setToken,
+  initializeUsers
 }
 
 export default withRouter(connect(
