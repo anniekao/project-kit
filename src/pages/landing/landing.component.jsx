@@ -8,7 +8,7 @@ import { clearToken } from '../../redux/actions/tokenAction';
 
 import './landing.style.css';
 
-const LandingPage = ({ logoutUser, clearToken, history }) => {
+const LandingPage = ({ user, token, logoutUser, clearToken, history }) => {
   const handleLogout = () => {
     logoutUser();
     clearToken();
@@ -19,6 +19,7 @@ const LandingPage = ({ logoutUser, clearToken, history }) => {
     <div>
       Landing Page
       <button onClick={handleLogout}>Logout</button>
+      <button onClick={() => history.push(`/profile/${user.id}`)}>Profile</button>
     </div>
   );
 }
