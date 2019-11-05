@@ -1,6 +1,6 @@
 import { FETCH_EVENT_FEED } from './types';
 
-import axios from 'axios';
+import axios from '../../axios';
 
 export const fetchEventFeed = () => dispatch => {
   axios
