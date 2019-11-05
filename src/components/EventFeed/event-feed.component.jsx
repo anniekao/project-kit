@@ -24,6 +24,7 @@ const EventFeed = ({ fetchEventFeed, events }) => {
         startTime={event.start.local}
         venueName={event.venue.name}
         address={event.venue.address.address_1}
+        description={event.description.text}
       />
     );
   });
