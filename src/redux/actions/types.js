@@ -10,5 +10,7 @@ export const SET_SIGNUP_ERROR = "SET_SIGNUP_ERROR";
 export const SET_LOGIN_ERROR = "SET_LOGIN_ERROR";
 export const SUBMIT_GOOGLE_OAUTH2_SIGNUP = "SUBMIT_GOOGLE_OAUTH2_SIGNUP";
 export const SUBMIT_GOOGLE_OAUTH2_LOGIN = "SUBMIT_GOOGLE_OAUTH2_LOGIN";
-
+export const INIT_USERS = "INIT_USERS";
+export const SET_USER = "SET_USER";
+export const SET_TOKEN = "SET_TOKEN";
 // error states

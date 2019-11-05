@@ -1,8 +1,14 @@
 import { combineReducers } from "redux";
 import eventFeedReducer from "./eventFeedReducer";
-import singupReducer from "./signupReducer";
+import signupReducer from "./signupReducer";
+import usersReducer from "./usersReducer"; 
+import userReducer from "./userReducer";
+import tokenReducer from './tokenReducer';
 
 export default combineReducers({
   eventFeed: eventFeedReducer,
-  singupState: singupReducer
+  signupState: signupReducer,
+  users: usersReducer,
+  user: userReducer,
+  token: tokenReducer
 });
