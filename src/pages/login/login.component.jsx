@@ -4,25 +4,35 @@ import "./login.style.css";
 import { FormControl, TextField, Fab } from "@material-ui/core";
 import { mdiGooglePlusBox } from "@mdi/js";
 import Icon from "@mdi/react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  ACTION_SET_PASSWORD,
-  ACTION_SET_EMAIL,
-  ACTION_SUBMIT_LOGIN,
-  ACTION_SET_LOGIN_ERROR
-} from "../../redux/actions/signupAction";
+// import {
+//   ACTION_SET_PASSWORD,
+//   ACTION_SET_EMAIL,
+//   ACTION_SUBMIT_LOGIN,
+//   ACTION_SET_LOGIN_ERROR
+// } from "../../redux/actions/signupAction";
+
+import { setUser } from '../../redux/actions/userAction';
+import { setToken } from '../../redux/actions/tokenAction';
+
+import loginService from '../../services/login';
 
 const LoginPage = ({
-  password,
-  email,
+  // password,
+  // email,
   loginErr,
-  ACTION_SET_PASSWORD,
-  ACTION_SET_EMAIL,
-  ACTION_SUBMIT_LOGIN,
+  setToken,
+  setUser,
+  history,
+  // // ACTION_SUBMIT_LOGIN,
   ACTION_SET_LOGIN_ERROR
 }) => {
   const [missingErr, setMissingErr] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
 
   const validateInput = (email, password) => {
     if (email === "" || password === "") {
@@ -40,6 +50,21 @@ const LoginPage = ({
       ACTION_SET_LOGIN_ERROR("");
     }
   };
+
+  const handleLogin = async () => {
+    try {
+      const user = await loginService.login({ email: email.trim(), password });
+      // TODO:SET COOKIE?
+
+      setToken(user.token);
+      setUser(user.data);
+      history.push('/')
+    } catch(exception) {
+      setErrorMessage('Wrong password');
+      // TODO: replace with material UI component: https://material-ui.com/components/snackbars/
+      alert(errorMessage);
+    } 
+  }
 
   return (
     <div className="signin-base-container">
@@ -62,9 +87,11 @@ const LoginPage = ({
               }}
               error={missingErr === true}
               helperText={missingErr ? "Email cannot be blank" : ""}
-              onChange={e => {
+              value = {email}
+              onChange={({target}) => {
                 resetErr();
-                ACTION_SET_EMAIL(e.target.value);
+                // ACTION_SET_EMAIL(e.target.value);
+                setEmail(target.value)
               }}
             />
             <TextField
@@ -79,9 +106,10 @@ const LoginPage = ({
               }}
               error={missingErr === true}
               helperText={missingErr ? "Password cannot be blank" : ""}
-              onChange={e => {
+              onChange={({target}) => {
                 resetErr();
-                ACTION_SET_PASSWORD(e.target.value);
+                // ACTION_SET_PASSWORD(e.target.value);
+                setPassword(target.value)
               }}
             />
             <div>
@@ -98,7 +126,7 @@ const LoginPage = ({
               }}
               onClick={() => {
                 validateInput(email, password)
-                  ? ACTION_SUBMIT_LOGIN()
+                  ? handleLogin()
                   : setMissingErr(true);
               }}
             >
@@ -128,18 +156,29 @@ const LoginPage = ({
   );
 };
 
-const mapStateToProps = ({ signupState }) => signupState;
+// const mapStateToProps = ({ signupState }) => signupState;
 
-const mapDispatchToProps = dispatch => {
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     ACTION_SET_PASSWORD: password => dispatch(ACTION_SET_PASSWORD(password)),
+//     ACTION_SET_EMAIL: email => dispatch(ACTION_SET_EMAIL(email)),
+//     ACTION_SUBMIT_LOGIN: () => dispatch(ACTION_SUBMIT_LOGIN()),
+//     ACTION_SET_LOGIN_ERROR: value => dispatch(ACTION_SET_LOGIN_ERROR(value))
+//   };
+// };
+
+const mapStateToProps = (state) => {
   return {
-    ACTION_SET_PASSWORD: password => dispatch(ACTION_SET_PASSWORD(password)),
-    ACTION_SET_EMAIL: email => dispatch(ACTION_SET_EMAIL(email)),
-    ACTION_SUBMIT_LOGIN: () => dispatch(ACTION_SUBMIT_LOGIN()),
-    ACTION_SET_LOGIN_ERROR: value => dispatch(ACTION_SET_LOGIN_ERROR(value))
-  };
+    user: state.user
+  }
 };
 
-export default connect(
+const mapDispatchToProps = {
+  setUser,
+  setToken
+}
+
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(LoginPage);
+)(LoginPage));
