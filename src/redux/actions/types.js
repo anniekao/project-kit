@@ -1,4 +1,8 @@
+// Event Feed
 export const FETCH_EVENT_FEED = "FETCH_EVENT_FEED";
+
+// Event History
+export const SET_EVENT_HISTORY = "SET_EVENT_HISTORY";
 
 // Signup / Login
 export const SET_PASSWORD = "SET_PASSWORD";
