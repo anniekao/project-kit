@@ -20,6 +20,7 @@ const LandingPage = ({ user, token, logoutUser, clearToken, history }) => {
       Landing Page
       <button onClick={handleLogout}>Logout</button>
       <button onClick={() => history.push(`/profile/${user.id}`)}>Profile</button>
+      <button onClick={() => history.push(`/history`)}>Event History</button>
     </div>
   );
 }
