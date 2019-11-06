@@ -11,6 +11,16 @@ const fetchEventHistory = async id => {
   }
 };
 
+const fetchEventContacts = async (userId, eventId) => {
+  try {
+    const res = await axios.get(`${baseUrl}/users/${userId}/events/${eventId}`)
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export default {
-  fetchEventHistory
+  fetchEventHistory,
+  fetchEventContacts
 };
