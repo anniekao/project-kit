@@ -12,11 +12,13 @@ const getUser = async (id) => {
   return res.data;
 }
 
-const createUser = async (userObj, token) => {
-  const config = {
-    headers: { Authorization: token }
-  }
-  const res = await axios.post(`${baseUrl}/users`, userObj, config);
+const createUser = async (userObj) => {
+  const res = await axios.post(`${baseUrl}/users`, userObj);
+  return res.data
+}
+
+const updateUser = async (id, userObj) => {
+  const res = await axios.put(`${baseUrl}/users/${id}`, userObj)
   return res.data
 }
 
@@ -24,5 +26,6 @@ const createUser = async (userObj, token) => {
 export default {
   getAll,
   getUser,
-  createUser
+  createUser,
+  updateUser
 }
