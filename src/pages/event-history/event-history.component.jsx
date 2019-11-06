@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getEventHistory } from '../../redux/actions/eventHistoryActions';
 
@@ -11,17 +12,24 @@ const EventHistoryPage = ({ user, events, getEventHistory }) => {
     }
   }, [user, getEventHistory]);
 
-  const eventHistory = events.map(event => {
+  const eventItems = events.map(event => {
     return (
       <div key={event.id}>
         <p>{event.name}</p>
         <p>{event.date}</p>
+        <p>
+        <Link
+          to={`/events/${event.id}/contacts`}
+        >
+          Details
+        </Link>
+        </p>
       </div>
     );
   });
 
   return (
-    events.length > 0 ? eventHistory : <div>LOADING</div>
+    events.length > 0 ? eventItems : <div>LOADING</div>
   );
 };
 
