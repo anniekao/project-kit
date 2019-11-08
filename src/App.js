@@ -1,8 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { PersistGate } from 'redux-persist/lib/integration/react';
 
 import { Provider } from "react-redux";
-import store from "./redux/store";
+// import store from "./redux/store";
+// import persistor from "./redux/store";
+// import * as storepersist from "./redux/store"
+// import {store, persistor} from "./redux/store"
 
 import LandingPage from "./pages/landing/landing.component";
 import HomePage from "./pages/home/home.component";
@@ -13,11 +17,14 @@ import CalenderPage from "./pages/calender/calender.component"
 import EventDetailsPage from './pages/event-details/event-details.component';
 import EventHistoryPage from "./pages/event-history/event-history.component";
 import EventContactsPage from "./pages/event-contacts/event-contacts.component";
+import configureStore from "./redux/store"
+let { store, persistor } = configureStore()
 
 function App() {
 
   return (
     <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
       <Router>
         <Switch>
           <Route exact path="/" component={LandingPage} />
@@ -33,6 +40,7 @@ function App() {
           <Route exact path="/events/:eventId/contacts" component={EventContactsPage} />
         </Switch>
       </Router>
+      </PersistGate>
     </Provider>
   );
 }
