@@ -7,6 +7,7 @@ import { logoutUser } from '../../redux/actions/userAction';
 import { clearToken } from '../../redux/actions/tokenAction';
 
 import './landing.style.css';
+import Sidebar from '../../components/Sidebar/sidebar.component';
 
 const LandingPage = ({ user, token, logoutUser, clearToken, history }) => {
   const handleLogout = () => {
@@ -20,6 +21,8 @@ const LandingPage = ({ user, token, logoutUser, clearToken, history }) => {
       Landing Page
       <button onClick={handleLogout}>Logout</button>
       <button onClick={() => history.push(`/profile/${user.id}`)}>Profile</button>
+      <button onClick={() => history.push(`/history`)}>Event History</button>
+      <Sidebar history={history} user={user} />
     </div>
   );
 }
