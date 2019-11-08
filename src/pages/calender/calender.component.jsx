@@ -14,7 +14,7 @@ const MyCalendar = ({ ACTION_SET_USER_EVENT_CALENDER, userEvents}) => {
     ACTION_SET_USER_EVENT_CALENDER(4);
   }, []);
 
-  console.log('reder + ' + userEvents)
+  console.log('reder + ' + JSON.stringify(userEvents))
 
   return (
     <div style={{ height: "500pt" }}>
@@ -24,7 +24,7 @@ const MyCalendar = ({ ACTION_SET_USER_EVENT_CALENDER, userEvents}) => {
         endAccessor="end"
         localizer={localizer}
         // date={new Date()}
-        style={{ height: '70vh' }}
+        style={{ height: '55vh' }}
         views={["month", "day"]}
         onSelectEvent={event => console.log("clicked event", event)}
         onSelectSlot={slot => console.log("create event here", slot)}
