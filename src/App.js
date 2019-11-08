@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { Provider } from "react-redux";
@@ -9,6 +9,7 @@ import HomePage from "./pages/home/home.component";
 import LoginPage from "./pages/login/login.component";
 import SignupPage from "./pages/signup/signup.component";
 import ProfilePage from "./pages/profile/profile.component";
+import CalenderPage from "./pages/calender/calender.component"
 
 function App() {
 
@@ -22,7 +23,8 @@ function App() {
           <Route exact path="/signup" component={SignupPage} />
           {/* <Route exact path="/profile/:id" render={({match}) => <ProfilePage />} />  */}
           <Route exact path="/profile/:id" component={ProfilePage} />
-        </Switch>
+          <Route exact path="/users/:id/calender" component={CalenderPage}/>
+         </Switch>
       </Router>
     </Provider>
   );

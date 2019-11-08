@@ -1,0 +1,10 @@
+/* @import "react-big-calendar/lib/sass/styles"; */
+/* @import "react-big-calendar/lib/addons/dragAndDrop/styles"; */
+
+div .rbc-day-bg:hover {
+  background-color: aquamarine;
+}
+
+/* div .rbc-day-bg:hover:active {
+  background-color: orange;
+} */

@@ -63,6 +63,7 @@ const LoginPage = ({
       const login = await loginService.login({ email: email.trim(), password });
       // TODO:SET COOKIE?
       const userData = await usersService.getUser(login.data.id);
+      console.log(JSON.stringify(userData))
       setToken(login.token);
       setUser(userData);      
       initializeUsers();
@@ -70,7 +71,7 @@ const LoginPage = ({
     } catch(exception) {
       setErrorMessage('Wrong password');
       // TODO: replace with material UI component: https://material-ui.com/components/snackbars/
-      alert(errorMessage);
+      alert(exception);
     } 
   }
 

@@ -15,4 +15,6 @@ export const SET_USER = "SET_USER";
 export const SET_TOKEN = "SET_TOKEN";
 export const LOGOUT_USER = "LOGOUT_USER";
 export const CLEAR_TOKEN = "CLEAR_TOKEN";
-// error states
+
+// User Events Calender
+export const SET_USER_EVENT_CALENDER = "SET_USER_EVENT_CALENDER";
