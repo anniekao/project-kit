@@ -13,7 +13,10 @@ const ProfileScanner = () => {
 
   const handleScan = (data) => {
     if (data) {
-      return <Redirect exact path="/profile/${data.id}" />
+      return <Redirect to={{
+          pathname: `/qr-code/${data.id}`,
+          contactId: data.id
+        }} />
     }
   }
 

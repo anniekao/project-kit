@@ -17,6 +17,7 @@ import CalenderPage from "./pages/calender/calender.component"
 import EventDetailsPage from './pages/event-details/event-details.component';
 import EventHistoryPage from "./pages/event-history/event-history.component";
 import EventContactsPage from "./pages/event-contacts/event-contacts.component";
+import RedirectPage from "./pages/redirect/redirect.component"
 import configureStore from "./redux/store"
 let { store, persistor } = configureStore()
 
@@ -38,6 +39,7 @@ function App() {
           <Route exact path="/event/details" component={EventDetailsPage} />
           <Route exact path="/history" component={EventHistoryPage} />
           <Route exact path="/events/:eventId/contacts" component={EventContactsPage} />
+          <Route exact path="/qr-code/:id" component={RedirectPage} />
         </Switch>
       </Router>
       </PersistGate>
