@@ -16,7 +16,7 @@ const ProfileQR = ({userId}) => {
   return (
     <div style={styles.container}>
       <div>
-        <QRCode value={`http://localhost:3000/profile/${userId}`} size={300} />  
+        <QRCode value={`http://localhost:3000/qr-code/${userId}`} size={300} />  
       </div>
     </div>
   )

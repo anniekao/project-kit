@@ -5,7 +5,10 @@ import { Redirect } from 'react-router-dom';
 import QrReader from 'react-qr-reader';
 
 const ProfileScanner = () => {
-  // const [result, setResult] = useState('No result');
+  const [redirect, setRedirect] = useState(false);
+  const [url, setUrl] = useState(null);
+  
+  
 
   const handleError = (err) => {
     console.error(err)
@@ -13,10 +16,9 @@ const ProfileScanner = () => {
 
   const handleScan = (data) => {
     if (data) {
-      return <Redirect to={{
-          pathname: `/qr-code/${data.id}`,
-          contactId: data.id
-        }} />
+      const contactId = data.split('qr-code/')[1];
+      setUrl(contactId)
+      setRedirect(true)
     }
   }
 
@@ -28,6 +30,10 @@ const ProfileScanner = () => {
         onScan={handleScan}
         style={{width:"100%"}}
       />
+      {redirect ? <Redirect to={{
+          pathname: `/qr-code/${url}`,
+          contactId: url
+        }} /> : ''}
     </div>
   )
 }
