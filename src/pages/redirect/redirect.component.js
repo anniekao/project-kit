@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import axios from "../../axios";
 import {connect} from "react-redux"
 
-const RedirectPage = ({id, location}) => {
+const RedirectPage = ({id, location, history}) => {
     let currentLocation = {};
     let contact = {}
     const success = input => {
@@ -21,8 +21,9 @@ const RedirectPage = ({id, location}) => {
             lat: currentLocation.latitude,
             long: currentLocation.longitude
           })
-          if(contact.data){
-            console.log('success' + contact.data)
+          if(contact.status === 200){
+            console.log('success', contact)
+            history.push(`/events/${contact.data.user_event_id}/contacts`)
           }
           return true;
           
