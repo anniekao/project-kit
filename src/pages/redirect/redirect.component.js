@@ -3,22 +3,40 @@ import { Redirect } from 'react-router-dom';
 import axios from "../../axios";
 import {connect} from "react-redux"
 
-const RedirectPage = ({user, location}) => {
+const RedirectPage = ({id, location}) => {
     let currentLocation = {};
-    const success = async input => {
+    let contact = {}
+    const success = input => {
       console.log(input)
-      currentLocation.longitude = input.coords.longitude
-      currentLocation.latitude = input.coords.latitude
+      const contactId = location.pathname.split('qr-code/')[1];
+      currentLocation.longitude = input.coords.longitude;
+      currentLocation.latitude = input.coords.latitude;
 
-      let contact = await axios.post(`/${user.id}/contact/${location.contactId}`, {
-          lat: currentLocation.latitude,
-          long: currentLocation.longitude
-        })
 
-                if(contact.data){
-          console.log('success' + contact.data)
+      // console.log('current location is ' + JSON.stringify(location) )
+      // let contact = await axios.post(`/${id}/contact/${location.contactId}`, {
+      (async () => {
+        try {
+          contact = await axios.post(`/users/${id}/contacts/${contactId}`, {
+            lat: currentLocation.latitude,
+            long: currentLocation.longitude
+          })
+          if(contact.data){
+            console.log('success' + contact.data)
+          }
+          return true;
+          
+        } catch (error) {
+          console.log(error)
         }
-      return 'success';
+
+        })()
+        
+        // await axios.post(`/${id}/contacts/${contactId}`, {
+        //   lat: currentLocation.latitude,
+        //   long: currentLocation.longitude
+        // })
+        return false
     }
 
     const error = err => {

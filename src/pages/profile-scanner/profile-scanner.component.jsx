@@ -13,27 +13,33 @@ const ProfileScanner = () => {
   const handleError = (err) => {
     console.error(err)
   }
+  
 
-  const handleScan = (data) => {
-    if (data) {
-      const contactId = data.split('qr-code/')[1];
-      setUrl(contactId)
-      setRedirect(true)
-    }
-  }
+  // const handleScan = (data) => {
+  //   if (data) {
+  //     const contactId = data.split('qr-code/')[1];
+  //     setUrl(contactId)
+  //     setRedirect(true)
+  //   }
+  // }
+
 
   return (
     <div style={{height:"100%"}}>
       <QrReader
         delay={300}
         onError={handleError}
-        onScan={handleScan}
+        // onScan={handleScan}
         style={{width:"100%"}}
       />
-      {redirect ? <Redirect to={{
+      <Redirect to={{
+          pathname: `/qr-code/8`,
+          contactId: 8
+        }} /> 
+      {/* {redirect ? <Redirect to={{
           pathname: `/qr-code/${url}`,
           contactId: url
-        }} /> : ''}
+        }} /> : ''} */}
     </div>
   )
 }
