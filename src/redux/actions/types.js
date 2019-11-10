@@ -26,4 +26,7 @@ export const CLEAR_TOKEN = "CLEAR_TOKEN";
 
 // User Events Calender
 export const SET_USER_EVENT_CALENDER = "SET_USER_EVENT_CALENDER";
+
+// Current Logged In User 
+export const SET_CURRENT_LOGGED_IN_USER = "SET_CURRENT_LOGGED_IN_USER";
 // error states
