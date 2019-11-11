@@ -59,7 +59,7 @@ const LoginPage = ({
       Cookies.set('token', login.token)
       const userData = await usersService.getUser(login.data.id, login.token);
       setUser(userData);
-      setToken(login.token); // TODO: DELETE ME?    
+      setToken(login.token); // TODO: DELETE ME + get token from Cookies? 
       history.push('/')
     } catch(exception) {
       setErrorMessage('Wrong password');
@@ -166,26 +166,11 @@ const LoginPage = ({
   );
 };
 
-// const mapStateToProps = ({ signupState }) => signupState;
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     ACTION_SET_PASSWORD: password => dispatch(ACTION_SET_PASSWORD(password)),
-//     ACTION_SET_EMAIL: email => dispatch(ACTION_SET_EMAIL(email)),
-//     ACTION_SUBMIT_LOGIN: () => dispatch(ACTION_SUBMIT_LOGIN()),
-//     ACTION_SET_LOGIN_ERROR: value => dispatch(ACTION_SET_LOGIN_ERROR(value))
-//   };
-// };
 
 const mapStateToProps = (state) => {
   return {
-    // ACTION_SET_PASSWORD: password => dispatch(ACTION_SET_PASSWORD(password)),
-    // ACTION_SET_EMAIL: email => dispatch(ACTION_SET_EMAIL(email)),
-    // ACTION_SUBMIT_LOGIN: () => dispatch(ACTION_SUBMIT_LOGIN()),
-    // ACTION_SET_LOGIN_ERROR: value => dispatch(ACTION_SET_LOGIN_ERROR(value)),
     user: state.user,
     users: state.user
-    // SUBMIT_GOOGLE_OAUTH2_SIGNUP: () => dispatch(SUBMIT_GOOGLE_OAUTH2_SIGNUP())
   }
 };
 

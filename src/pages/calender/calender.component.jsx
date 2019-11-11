@@ -9,24 +9,25 @@ import { ACTION_SET_USER_EVENT_CALENDER } from "../../redux/actions/userCalender
 
 const localizer = momentLocalizer(moment);
 
-const MyCalendar = ({ ACTION_SET_USER_EVENT_CALENDER, userCalendar}) => {
+const MyCalendar = ({ ACTION_SET_USER_EVENT_CALENDER, userEvents, token, user}) => {
   useEffect(() => {
-    ACTION_SET_USER_EVENT_CALENDER(4);
+    ACTION_SET_USER_EVENT_CALENDER(user.id, token);
   }, []);
 
-  console.log('reder + ' + JSON.stringify(userCalendar))
+  console.log('reder + ' + JSON.stringify(userEvents))
 
   return (
     <div style={{ height: "500pt" }}>
       <Calendar
-        events={userCalendar ? userCalendar : []}
+        events={userEvents ? userEvents : []}
         startAccessor="start"
         endAccessor="end"
         localizer={localizer}
+        // date={new Date()}
         style={{ height: '55vh' }}
         views={["month", "day"]}
-        onSelectEvent={event => console.log("clicked event", event)}
-        onSelectSlot={slot => console.log("create event here", slot)}
+        onSelectEvent={event => console.log("clicked event", event)}
+        onSelectSlot={slot => console.log("create event here", slot)}
       />
     </div>
   );
@@ -34,14 +35,15 @@ const MyCalendar = ({ ACTION_SET_USER_EVENT_CALENDER, userCalendar}) => {
 
 const mapStateToProps = (state) => {
   return {
-    userCalendar: state.userCalendar,
-    token: state.token
+    userEvents: state.userCalenderState,
+    token: state.token,
+    user: state.user
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    ACTION_SET_USER_EVENT_CALENDER: userId =>
-      dispatch(ACTION_SET_USER_EVENT_CALENDER(userId))
+    ACTION_SET_USER_EVENT_CALENDER: (userId, token) =>
+      dispatch(ACTION_SET_USER_EVENT_CALENDER(userId, token))
   };
 };
 

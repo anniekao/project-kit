@@ -1,9 +1,9 @@
 import * as actionTypes from "../actions/types";
 import { getUserEventCalender } from "../../services/calender";
 
-const ACTION_SET_USER_EVENT_CALENDER = userId => {
+const ACTION_SET_USER_EVENT_CALENDER = (userId, token) => {
   return async dispatch => {
-    const userEvents = await getUserEventCalender(userId);
+    const userEvents = await getUserEventCalender(userId, token);
     userEvents.data.forEach(obj => {
       obj.start = new Date(obj.start)
       obj.end = new Date(obj.end)
