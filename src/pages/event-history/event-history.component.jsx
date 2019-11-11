@@ -8,7 +8,7 @@ import './event-history.style.css';
 const EventHistoryPage = ({ user, token, events, getEventHistory }) => {
   useEffect(() => {
     if (user) {
-      getEventHistory(user.id);
+      getEventHistory(user.id, token);
     }
   }, [user, getEventHistory]);
 

@@ -5,12 +5,12 @@ import { getEventContacts } from '../../redux/actions/eventContactsActions';
 
 import './event-contacts.style.css';
 
-const EventContactsPage = ({ user, contacts, getEventContacts }) => {
+const EventContactsPage = ({ user, token, contacts, getEventContacts }) => {
   const { eventId } = useParams();
 
   useEffect(() => {
     if (user) {
-      getEventContacts(user.id, eventId);
+      getEventContacts(user.id, eventId, token);
     }
   }, [user, eventId, getEventContacts]);
 
@@ -33,7 +33,8 @@ const EventContactsPage = ({ user, contacts, getEventContacts }) => {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    contacts: state.eventContacts.contacts
+    contacts: state.eventContacts.contacts,
+    token: state.token
   };
 };
 

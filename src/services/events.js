@@ -1,17 +1,19 @@
-import axios from 'axios';
+import axios, { setAuthHeader } from '../axios';
 
-const baseUrl = 'http://localhost:5000';
+// const baseUrl = 'http://localhost:5000';
 
-const fetchEventHistory = async id => {
+const fetchEventHistory = async (id, token) => {
+  setAuthHeader(token);
   try {
-    const res = await axios.get(`${baseUrl}/users/${id}/history`);
+    const res = await axios.get(`/users/${id}/history`);
     return res.data;
   } catch (error) {
     console.log(error);
   }
 };
 
-const fetchEventContacts = async (userId, eventId) => {
+const fetchEventContacts = async (userId, eventId, token) => {
+  setAuthHeader(token);
   try {
     const res = await axios.get(`${baseUrl}/users/${userId}/events/${eventId}`)
     return res.data;

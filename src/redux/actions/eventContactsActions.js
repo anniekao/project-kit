@@ -2,8 +2,8 @@ import { SET_EVENT_CONTACTS } from './types';
 
 import eventService from '../../services/events';
 
-export const getEventContacts = (userId, eventId) => async dispatch => {
-  const eventContacts = await eventService.fetchEventContacts(userId, eventId);
+export const getEventContacts = (userId, eventId, token) => async dispatch => {
+  const eventContacts = await eventService.fetchEventContacts(userId, eventId, token);
 
   console.log(eventContacts)
   dispatch({
