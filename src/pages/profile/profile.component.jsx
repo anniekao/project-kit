@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import SwipeableViews from 'react-swipeable-views';
+import Cookies from 'js-cookie';
 
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -11,7 +12,7 @@ import ProfileScanner from '../profile-scanner/profile-scanner.component';
 
 import { updateUser } from '../../redux/actions/userAction';
 
-const Profile = ({ user, users, updateUser }) => {
+const Profile = ({ user, updateUser, token }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [occupation, setOccupation] = useState('');
@@ -19,8 +20,6 @@ const Profile = ({ user, users, updateUser }) => {
   const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-
-  const currentUser = users.filter(u => u.id === user.id)[0];
   
   const handleUpdate = () => {
     const profileObj = {
@@ -39,7 +38,9 @@ const Profile = ({ user, users, updateUser }) => {
         delete profileObj[ele]
       }
     }
-    updateUser(user.id, profileObj)
+
+    // const token = async () => await Cookies.get(token)
+    updateUser(user.id, profileObj, token)
     clearForm()
   }
 
@@ -66,7 +67,7 @@ const Profile = ({ user, users, updateUser }) => {
     <SwipeableViews>
       <div>
         <div>
-          <p>Name: {currentUser.first_name + " " + currentUser.last_name}</p>
+          <p>Name: {user.first_name + " " + user.last_name}</p>
           <TextField
             id="outlined-basic"
             value={firstName}
@@ -81,7 +82,7 @@ const Profile = ({ user, users, updateUser }) => {
           />
         </div>
         <div>
-          <p>{currentUser.bio}</p>
+          <p>{user.bio}</p>
           <TextField
             id="outlined-basic"
             multiline
@@ -93,7 +94,7 @@ const Profile = ({ user, users, updateUser }) => {
           />
         </div>   
         <div>
-          <p>Occupation: {currentUser.occupation}</p>
+          <p>Occupation: {user.occupation}</p>
           <TextField
             id="outlined-basic"
             value={occupation}
@@ -102,7 +103,7 @@ const Profile = ({ user, users, updateUser }) => {
           />
         </div>   
         <div>
-          <p>Company: {currentUser.company} </p>
+          <p>Company: {user.company} </p>
           <TextField
             id="outlined-basic"
             value={company}
@@ -111,7 +112,7 @@ const Profile = ({ user, users, updateUser }) => {
           />
         </div>
         <div>
-          <p>Email: {currentUser.email}</p>
+          <p>Email: {user.email}</p>
           <TextField
             id="outlined-basic"
             value={email}
@@ -120,7 +121,7 @@ const Profile = ({ user, users, updateUser }) => {
           />
         </div>
         <div>
-          <p>Phone: {currentUser.phone}</p>
+          <p>Phone: {user.phone}</p>
           <TextField
             id="outlined-basic"
             value={phone}
@@ -142,8 +143,8 @@ const Profile = ({ user, users, updateUser }) => {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.users,
-    user: state.user
+    user: state.user,
+    token: state.token
   }
 }
 

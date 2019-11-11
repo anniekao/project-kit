@@ -5,9 +5,9 @@ const axiosApi = axios.create({
   withCredentials: true
 });
 
-export const setAuthHeader = cookie => {
-  console.log("current token is now " + cookie);
-  const token = cookie.split("=")[1];
+export const setAuthHeader = token => {
+  // console.log("current token is now " + cookie);
+  // const token = cookie.split("=")[1];
   axiosApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 

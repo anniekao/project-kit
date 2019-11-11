@@ -6,13 +6,9 @@ import { mdiGooglePlusBox } from "@mdi/js";
 import Icon from "@mdi/react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  // ACTION_SET_PASSWORD,
-  // ACTION_SET_EMAIL,
-  // ACTION_SUBMIT_LOGIN,
-  // ACTION_SET_LOGIN_ERROR,
-  SUBMIT_GOOGLE_OAUTH2_SIGNUP
-} from "../../redux/actions/signupAction";
+import Cookies from "js-cookie";
+
+import {  SUBMIT_GOOGLE_OAUTH2_SIGNUP } from "../../redux/actions/signupAction";
 
 import { setUser } from '../../redux/actions/userAction';
 import { setToken } from '../../redux/actions/tokenAction';
@@ -33,7 +29,8 @@ const LoginPage = ({
   setToken,
   setUser,
   initializeUsers,
-  history
+  history,
+  token
 }) => {
   const [missingErr, setMissingErr] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -61,12 +58,10 @@ const LoginPage = ({
   const handleLogin = async () => {
     try {
       const login = await loginService.login({ email: email.trim(), password });
-      // TODO:SET COOKIE?
-      const userData = await usersService.getUser(login.data.id);
-      console.log(JSON.stringify(userData))
-      setToken(login.token);
-      setUser(userData);      
-      initializeUsers();
+      Cookies.set('token', login.token)
+      const userData = await usersService.getUser(login.data.id, login.token);
+      setUser(userData);
+      setToken(login.token); // TODO: DELETE ME?    
       history.push('/')
     } catch(exception) {
       setErrorMessage('Wrong password');
@@ -192,6 +187,7 @@ const mapStateToProps = (state) => {
     // ACTION_SET_LOGIN_ERROR: value => dispatch(ACTION_SET_LOGIN_ERROR(value)),
     user: state.user,
     users: state.user,
+    token: state.token
     // SUBMIT_GOOGLE_OAUTH2_SIGNUP: () => dispatch(SUBMIT_GOOGLE_OAUTH2_SIGNUP())
   }
 };

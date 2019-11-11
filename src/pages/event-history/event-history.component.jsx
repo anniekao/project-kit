@@ -5,7 +5,7 @@ import { getEventHistory } from '../../redux/actions/eventHistoryActions';
 
 import './event-history.style.css';
 
-const EventHistoryPage = ({ user, events, getEventHistory }) => {
+const EventHistoryPage = ({ user, token, events, getEventHistory }) => {
   useEffect(() => {
     if (user) {
       getEventHistory(user.id);
@@ -36,6 +36,7 @@ const EventHistoryPage = ({ user, events, getEventHistory }) => {
 const mapStateToProps = state => {
   return {
     user: state.user,
+    token: state.token,
     events: state.eventHistory.events
   };
 };

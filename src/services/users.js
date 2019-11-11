@@ -1,4 +1,4 @@
-import axios from "../axios";
+import axios, { setAuthHeader } from "../axios";
 
 // const baseUrl = "http://localhost:5000"; // TODO:Replace with Heroku backend url
 const getCurrentUser = async token => {
@@ -11,12 +11,14 @@ const getCurrentUser = async token => {
   return res.data;
 };
 
-const getAll = async () => {
+const getAll = async (token) => {
+  setAuthHeader(token)
   const res = await axios.get(`/users`);
   return res.data;
 };
 
-const getUser = async id => {
+const getUser = async (id, token) => {
+  setAuthHeader(token)
   const res = await axios.get(`/users/${id}`);
   return res.data;
 };

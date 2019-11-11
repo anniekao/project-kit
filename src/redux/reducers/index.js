@@ -16,5 +16,5 @@ export default combineReducers({
   users: usersReducer,
   user: userReducer,
   token: tokenReducer,
-  userCalenderState: userCalenderReducer
+  userCalendar: userCalenderReducer
 });
