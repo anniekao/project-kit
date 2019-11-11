@@ -15,7 +15,7 @@ const fetchEventHistory = async (id, token) => {
 const fetchEventContacts = async (userId, eventId, token) => {
   setAuthHeader(token);
   try {
-    const res = await axios.get(`${baseUrl}/users/${userId}/events/${eventId}`)
+    const res = await axios.get(`/users/${userId}/events/${eventId}`)
     return res.data;
   } catch (error) {
     console.log(error);
