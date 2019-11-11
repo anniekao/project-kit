@@ -23,12 +23,13 @@ const getUser = async (id, token) => {
   return res.data;
 };
 
-const createUser = async userObj => {
-  const res = await axios.post(`/users`, userObj);
-  return res.data;
-};
+// const createUser = async userObj => {
+//   const res = await axios.post(`/users`, userObj);
+//   return res.data;
+// };
 
-const updateUser = async (id, userObj) => {
+const updateUser = async (id, userObj, token) => {
+  setAuthHeader(token)
   const res = await axios.put(`/users/${id}`, userObj);
   return res.data;
 };
@@ -36,7 +37,7 @@ const updateUser = async (id, userObj) => {
 export default {
   getAll,
   getUser,
-  createUser,
+  // createUser,
   updateUser,
   getCurrentUser
 };

@@ -28,9 +28,7 @@ const LoginPage = ({
   SUBMIT_GOOGLE_OAUTH2_SIGNUP,
   setToken,
   setUser,
-  initializeUsers,
-  history,
-  token
+  history
 }) => {
   const [missingErr, setMissingErr] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -186,8 +184,7 @@ const mapStateToProps = (state) => {
     // ACTION_SUBMIT_LOGIN: () => dispatch(ACTION_SUBMIT_LOGIN()),
     // ACTION_SET_LOGIN_ERROR: value => dispatch(ACTION_SET_LOGIN_ERROR(value)),
     user: state.user,
-    users: state.user,
-    token: state.token
+    users: state.user
     // SUBMIT_GOOGLE_OAUTH2_SIGNUP: () => dispatch(SUBMIT_GOOGLE_OAUTH2_SIGNUP())
   }
 };

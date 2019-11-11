@@ -14,9 +14,9 @@ export const setUser = user => {
   };
 };
 
-export const updateUser = (id, profileObj) => {
+export const updateUser = (id, profileObj, token) => {
   return async dispatch => {
-    const updatedUser = await usersService.updateUser(id, profileObj);
+    const updatedUser = await usersService.updateUser(id, profileObj, token);
     return dispatch({
       type: UPDATE_USER,
       data: { ...updatedUser, id }
