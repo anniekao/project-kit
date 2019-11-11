@@ -3,23 +3,23 @@ import React, { useEffect } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import "./calender.style.css";
+import "./calendar.style.css";
 import { connect } from "react-redux";
-import { ACTION_SET_USER_EVENT_CALENDER } from "../../redux/actions/userCalenderAction";
+import { ACTION_SET_USER_EVENT_CALENDAR } from "../../redux/actions/userCalendarAction";
 
 const localizer = momentLocalizer(moment);
 
-const MyCalendar = ({ ACTION_SET_USER_EVENT_CALENDER, userEvents, token, user}) => {
+const MyCalendar = ({ ACTION_SET_USER_EVENT_CALENDAR, userCalendar, token, user}) => {
   useEffect(() => {
-    ACTION_SET_USER_EVENT_CALENDER(user.id, token);
+    ACTION_SET_USER_EVENT_CALENDAR(user.id, token);
   }, []);
 
-  console.log('reder + ' + JSON.stringify(userEvents))
+  // console.log('reder + ', userCalendar)
 
   return (
     <div style={{ height: "500pt" }}>
       <Calendar
-        events={userEvents ? userEvents : []}
+        events={userCalendar ? userCalendar : []}
         startAccessor="start"
         endAccessor="end"
         localizer={localizer}
@@ -35,15 +35,15 @@ const MyCalendar = ({ ACTION_SET_USER_EVENT_CALENDER, userEvents, token, user}) 
 
 const mapStateToProps = (state) => {
   return {
-    userEvents: state.userCalenderState,
+    userCalendar: state.userCalendar,
     token: state.token,
     user: state.user
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    ACTION_SET_USER_EVENT_CALENDER: (userId, token) =>
-      dispatch(ACTION_SET_USER_EVENT_CALENDER(userId, token))
+    ACTION_SET_USER_EVENT_CALENDAR: (userId, token) =>
+      dispatch(ACTION_SET_USER_EVENT_CALENDAR(userId, token))
   };
 };
 

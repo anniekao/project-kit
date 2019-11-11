@@ -6,7 +6,7 @@ import signupReducer from "./signupReducer";
 import usersReducer from "./usersReducer";
 import userReducer from "./userReducer";
 import tokenReducer from "./tokenReducer";
-import userCalenderReducer from "./userCalenderReducer";
+import userCalendarReducer from "./userCalendarReducer";
 
 export default combineReducers({
   eventFeed: eventFeedReducer,
@@ -16,5 +16,5 @@ export default combineReducers({
   users: usersReducer,
   user: userReducer,
   token: tokenReducer,
-  userCalendarState: userCalenderReducer
+  userCalendar: userCalendarReducer
 });

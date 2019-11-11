@@ -24,8 +24,8 @@ export const LOGOUT_USER = "LOGOUT_USER";
 export const SET_TOKEN = "SET_TOKEN";
 export const CLEAR_TOKEN = "CLEAR_TOKEN";
 
-// User Events Calender
-export const SET_USER_EVENT_CALENDER = "SET_USER_EVENT_CALENDER";
+// User Events Calendar
+export const SET_USER_EVENT_CALENDAR = "SET_USER_EVENT_CALENDAR";
 
 // Current Logged In User 
 export const SET_CURRENT_LOGGED_IN_USER = "SET_CURRENT_LOGGED_IN_USER";

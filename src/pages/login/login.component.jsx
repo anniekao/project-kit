@@ -8,7 +8,9 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Cookies from "js-cookie";
 
-import {  SUBMIT_GOOGLE_OAUTH2_SIGNUP } from "../../redux/actions/signupAction";
+import { SUBMIT_GOOGLE_OAUTH2_SIGNUP } from "../../redux/actions/signupAction";
+import { ACTION_SET_USER_EVENT_CALENDAR } from "../../redux/actions/userCalendarAction";
+
 
 import { setUser } from '../../redux/actions/userAction';
 import { setToken } from '../../redux/actions/tokenAction';
@@ -26,6 +28,7 @@ const LoginPage = ({
   // ACTION_SUBMIT_LOGIN,
   ACTION_SET_LOGIN_ERROR,
   SUBMIT_GOOGLE_OAUTH2_SIGNUP,
+  // ACTION_SET_USER_EVENT_CALENDAR,
   setToken,
   setUser,
   history
@@ -60,6 +63,7 @@ const LoginPage = ({
       const userData = await usersService.getUser(login.data.id, login.token);
       setUser(userData);
       setToken(login.token); // TODO: DELETE ME + get token from Cookies? 
+      // ACTION_SET_USER_EVENT_CALENDAR(login.data.id, login.token)
       history.push('/')
     } catch(exception) {
       setErrorMessage('Wrong password');
@@ -178,7 +182,8 @@ const mapDispatchToProps = {
   setUser,
   setToken,
   initializeUsers,
-  SUBMIT_GOOGLE_OAUTH2_SIGNUP
+  SUBMIT_GOOGLE_OAUTH2_SIGNUP,
+  // ACTION_SET_USER_EVENT_CALENDAR
 }
 
 export default withRouter(connect(
