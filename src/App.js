@@ -33,8 +33,8 @@ function App() {
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/signup" component={SignupPage} />
           {/* <Route exact path="/profile/:id" render={({match}) => <ProfilePage />} />  */}
-          <Route exact path="/profile/:id" component={ProfilePage} />
-          <Route exact path="/users/:id/calender" component={CalenderPage}/>
+          <Route exact path="/profile" component={ProfilePage} />
+          <Route exact path="/calendar" component={CalenderPage}/>
           {/* TODO: MAKE EVENT DETAILS MODAL INSTEAD OF STANDALONE PAGE */}
           <Route exact path="/event/details" component={EventDetailsPage} />
           <Route exact path="/history" component={EventHistoryPage} />
