@@ -1,6 +1,7 @@
 // Network Events
 export const FETCH_EVENT_FEED = "FETCH_EVENT_FEED";
 export const SET_EVENT_HISTORY = "SET_EVENT_HISTORY";
+export const SET_ALL_CONTACTS = "SET_ALL_CONTACTS"
 export const SET_EVENT_CONTACTS = "SET_EVENT_CONTACTS";
 
 // Signup / Login

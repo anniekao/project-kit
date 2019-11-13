@@ -22,6 +22,7 @@ const LandingPage = ({ user, token, logoutUser, clearToken, history }) => {
       <button onClick={handleLogout}>Logout</button>
       <button onClick={() => history.push(`/profile`)}>Profile</button>
       <button onClick={() => history.push(`/history`)}>Event History</button>
+      <button onClick={() => history.push(`/contacts`)}>Contacts</button>
       <Sidebar history={history} user={user} />
     </div>
   );

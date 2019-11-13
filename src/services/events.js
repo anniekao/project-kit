@@ -12,17 +12,28 @@ const fetchEventHistory = async (id, token) => {
   }
 };
 
-const fetchEventContacts = async (userId, eventId, token) => {
+const fetchAllContacts = async (userId, token) => {
   setAuthHeader(token);
   try {
-    const res = await axios.get(`/users/${userId}/events/${eventId}`)
+    const res = await axios.get(`/users/${userId}/contacts`);
     return res.data;
   } catch (error) {
     console.log(error);
   }
-}
+};
+
+const fetchEventContacts = async (userId, eventId, token) => {
+  setAuthHeader(token);
+  try {
+    const res = await axios.get(`/users/${userId}/events/${eventId}`);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export default {
   fetchEventHistory,
+  fetchAllContacts,
   fetchEventContacts
 };
