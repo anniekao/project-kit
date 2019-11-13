@@ -11,7 +11,7 @@ import userCalendarReducer from "./userCalendarReducer";
 export default combineReducers({
   eventFeed: eventFeedReducer,
   eventHistory: eventHistoryReducer,
-  eventContacts: eventContactsReducer,
+  contacts: eventContactsReducer,
   signupState: signupReducer,
   users: usersReducer,
   user: userReducer,

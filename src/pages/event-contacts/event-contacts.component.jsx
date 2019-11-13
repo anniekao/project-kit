@@ -33,7 +33,7 @@ const EventContactsPage = ({ user, token, contacts, getEventContacts }) => {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    contacts: state.eventContacts.contacts,
+    contacts: state.contacts.eventContacts,
     token: state.token
   };
 };
